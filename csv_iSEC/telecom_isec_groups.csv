@@ -4,7 +4,7 @@ direction-general;Direction général;Direction général de la branch télécom
 secretariat;Secretariat;Le secretariat de direction;service-direction;Security;0
 service-technique;Service téchnique;Le service en charge de gerer le parc informatique;;Security;0
 direction-technique;Direction du service téchnique;La direction du service téchnique;service-technique;Security;0
-ingenerie-reseau;Ingénérie réseau;Les personnes en charge de la creation et de la maintenance du réseau;service-technique;Security;0
+ingenierie-reseau;Ingénérie réseau;Les personnes en charge de la creation et de la maintenance du réseau;service-technique;Security;0
 technique;Technique;Les personnes en charge de mettre en place le réseau de l'entreprise;service-technique;Security;0
 support;Support;Les personnes en charge d'aider les employés a bien utiliser le par informatique;service-technique;Security;0
 service-commercial;Service commercial;Les personnes en charge de vendre les prduits de l'entreprise;;Security;0
