@@ -1,0 +1,21 @@
+name;displayName;description;parentGroup;groupType;groupScope
+service-direction;Service direction;La direction général de la branche télécom;;Security;0
+direction-general;Direction général;Direction général de la branch télécom;service-direction;Security;0
+secretariat;Secretariat;Le secretariat de direction;service-direction;Security;0
+service-technique;Service téchnique;Le service en charge de gerer le parc informatique;;Security;0
+direction-technique;Direction du service téchnique;La direction du service téchnique;service-technique;Security;0
+ingenerie-reseau;Ingénérie réseau;Les personnes en charge de la creation et de la maintenance du réseau;service-technique;Security;0
+technique;Technique;Les personnes en charge de mettre en place le réseau de l'entreprise;service-technique;Security;0
+support;Support;Les personnes en charge d'aider les employés a bien utiliser le par informatique;service-technique;Security;0
+service-commercial;Service commercial;Les personnes en charge de vendre les prduits de l'entreprise;;Security;0
+direction-commercial;Direction commercial;Les personnes dirigeant le service de commerce;service-commercial;Security;0
+commercial;Commercial;Les personnes en charge de vendre les produits de l'entreprise;service-commercial;Security;0
+communication;Communication;Les personnes gèrant la communication de l'entreprise au travers des publicités ou de la presse;service-commercial;Security;0
+service-administration-finances;Service d'administration et des finances;Le service en charge de gèrer le budget et la paperasse de l'entrprise;;Security;0
+direction-administration-finances;Direction de l'administration et des finances;Les personnes en charge de diriger le service d'administrations et des finances;service-administration-finances;Security;0
+administration-informatique;Administration informatique;Les personnes en charge d'administrer le système informatique te les utilisateurs;service-administration-finances;Security;0
+comptabilite;Comptabilité;Les personnes en charge de comtpe dans l'entreprise;service-administration-finances;Security;0
+secretariat-administration-finances;Secretariat d'administration et des finances;Les secrétaires du services d'administration et des finances;service-administration-finances;Security;0
+service-ressources-humaines;Ressources humaines;Les personnes en charge de virer des gens;;Security;0
+direction-ressources-humaines;Direction des ressources humaines;Les personnes dirigeant le service;service-ressources-humaines;Security;0
+paie;Paie;Les personnes qui gèrent la MONEY;service-ressources-humaines;Security;0
