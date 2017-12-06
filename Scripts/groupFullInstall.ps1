@@ -1,0 +1,1 @@
+﻿./FullInstall.ps1 "isec-group" "C:\Shares\Administration\group_isec_groups.csv" "C:\Shares\Administration\orga_iSEC.csv"

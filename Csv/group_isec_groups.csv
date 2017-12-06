@@ -3,7 +3,7 @@ service-direction;Service direction;Groupe du service de direction du groupe iSE
 pdg;PDG;Groupe du PDG du groupe iSEC;service-direction;security;0
 service-secretariat-direction;Service secrétariat direction;Groupe du service du secrétariat de direction du groupe iSEC;service-direction;security;0
 service-metiers;Service métiers;Groupe du service métiers du groupe iSEC;;security;0
-direction-metiers;Direction métiers;Groupe de la direction métiers du  groupe iSEC;;security;0
+direction-metiers;Direction métiers;Groupe de la direction métiers du  groupe iSEC;service-metiers;security;0
 coordinateur-batiment;Groupe du coordinateur bâtiment;Groupe des coordinateurs bâtiment du groupe iSEC;service-metiers;security;0
 coordinateur-media;Groupe du coordinateur média;Groupe des coordinateurs média du groupe iSEC;service-metiers;security;0
 coordinateur-telecom;Groupe du coordinateur télécom;Groupe des coordinateurs télécom du groupe iSEC;service-metiers;security;0
@@ -11,7 +11,7 @@ service-commercial;Service commercial;Groupe du service commercial du groupe iSE
 direction-commerciale;Direction commerciale;Groupe de la direction commerciale du groupe iSEC;service-commercial;security;0
 assistant-commercial;Assistant commercial;Groupe de l'assistant commercial du groupe iSEC;service-commercial;security;0
 responsable-commercial;Responsable commercial;Groupe du responsable commercial du groupe iSEC;service-commercial;security;0
-service-administration-finance;Service administration finance;Groupe du service d'administration et de finance du groupe iSEC;;security:0
+service-administration-finance;Service administration finance;Groupe du service d'administration et de finance du groupe iSEC;;security:0;
 direction-administration-finance;Direction administration finance;Groupe de la direction de l'administration et de la finance du groupe iSEC;service-administration-finance;security;0
 comptabilite-administration-finance;Comptabilité administration finance;Groupe des comptables d'administration et de finance du groupe iSEC;service-administration-finance;security;0
 secretariat-administration-finance;Secrétariat administration finance;Groupe des secrétaires administration et financier du groupe iSEC;service-administration-finance;security;0
