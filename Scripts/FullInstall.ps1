@@ -1,8 +1,16 @@
 ﻿Param(
+    [string] $DomainName,
     [string] $BaseGroupName,
     [string] $GroupCsvLocation,
-    [string] $UserCsvLocation
+    [string] $UserCsvLocation,
+    [string] $UserHomeLocation,
+    [string] $ServicesHomeLocation,
+    [string] $HomeShareName,
+    [string] $ServiceShareName
 )
 
-./CreateGroups.ps1 $BaseGroupName $GroupCsvLocation
-./CreateUsers.ps1 $UserCsvLocation
+.\InitialInstall.ps1 $UserHomeLocation $ServicesHomeLocation $HomeShareName $ServiceShareName
+Write-Output ""
+.\CreateGroups.ps1 $BaseGroupName $GroupCsvLocation $ServicesHomeLocation
+Write-Output ""
+.\CreateUsers.ps1 $DomainName $UserCsvLocation $HomeShareName
