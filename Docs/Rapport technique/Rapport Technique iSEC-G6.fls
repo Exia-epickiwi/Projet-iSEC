@@ -121,6 +121,8 @@ OUTPUT Rapport Technique iSEC-G6.pdf
 INPUT ./Rapport Technique iSEC-G6.out
 INPUT ./Rapport Technique iSEC-G6.out
 OUTPUT Rapport Technique iSEC-G6.out
+INPUT title.tex
+INPUT title.tex
 INPUT img/Logo-groupe.png
 INPUT ./img/Logo-groupe.png
 INPUT ./img/Logo-groupe.png
