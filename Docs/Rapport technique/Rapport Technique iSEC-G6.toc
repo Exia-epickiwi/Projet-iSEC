@@ -1,0 +1,33 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Situation}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Besoin technique}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Organisation}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}...}{2}{subsection.1.3}
+\contentsline {section}{\numberline {2}Installation des serveurs}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Hyperviseur}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Machines virtuelles}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Communication inter-VMs}{2}{subsection.2.3}
+\contentsline {section}{\numberline {3}Configuration des serveurs}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Serveurs groupe iSEC}{2}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Serveur principal}{2}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Serveur r\IeC {\'e}plica}{2}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Serveurs groupe Telecom}{2}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Serveur Windows Server}{2}{subsubsection.3.2.1}
+\contentsline {section}{\numberline {4}R\IeC {\'e}ponse au besoin}{2}{section.4}
+\contentsline {subsection}{\numberline {4.1}Scripts}{2}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}GPO}{2}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Partage Groupe}{2}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Partage Telecom}{2}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Partage par service}{2}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}Imprimantes}{2}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.5}S\IeC {\'e}curit\IeC {\'e} mot de passe}{2}{subsubsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.6}Ex\IeC {\'e}cution automatique}{2}{subsubsection.4.2.6}
+\contentsline {subsubsection}{\numberline {4.2.7}Fond d'\IeC {\'e}cran}{2}{subsubsection.4.2.7}
+\contentsline {subsubsection}{\numberline {4.2.8}Logiciel 7Zip}{2}{subsubsection.4.2.8}
+\contentsline {subsubsection}{\numberline {4.2.9}...}{2}{subsubsection.4.2.9}
+\contentsline {section}{\numberline {5}Supervision}{2}{section.5}
+\contentsline {subsection}{\numberline {5.1}Installation}{2}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Configuration}{2}{subsection.5.2}
+\contentsline {section}{\numberline {6}Bilan}{2}{section.6}
+\contentsline {subsection}{\numberline {6.1}\IeC {\'E}volutions possibles}{2}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Conclusion}{2}{subsection.6.2}
