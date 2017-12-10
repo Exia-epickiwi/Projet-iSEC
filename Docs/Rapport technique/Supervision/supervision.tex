@@ -1,4 +1,16 @@
 \section{Supervision}
+
+La supervision d'une infrastructure informatique consiste à vérifier à interval régulier la bonne santé des zones critiques pour en assurer la disponiblitité.
+La supervision est un enjeux majeur d'une bonne infrastructure car elle permet d'être averti d'une panne des qu'elle se produit pour agire le plus rapidement possible.
+
+Dans notre infrastructure composée de 2 serveurs et 5 machines virtuelle, nous avons choisi centreon comme superviseur.
+Centreon est un système tout en un permettant de vérifier, a l'aide du protocol SNMP, la bonne santé des équipements.
+Nous l'avons choisis pour sa facilité d'utilisation et pour sa propriété décentralisé.
+
+Centréon met à disposition une architecture décentralisée permettant de gèrer un grand parc de machines.
+Cette architecture est composée d'un serveur dit \emph{central} qui stock les données et dispose d'une interface d'administration web.
+On trouve ensuite des serveurs dits \emph{Pollers} en charge de collecter les données des serveurs au travers de \emph{plugins}.
+
 	\subsection{Installation}
 	\subsection{Configuration}
 	
