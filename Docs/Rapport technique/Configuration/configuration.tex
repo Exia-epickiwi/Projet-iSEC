@@ -1,7 +1,68 @@
 \section{Configuration des serveurs}
+
+	\paragraph{}
+		Afin de configurer un domaine Active Directory au sein d’un réseau Windows sur un serveur Windows Server 2012 R2, il faut suivre les étapes suivantes :
+	\begin{enumerate}
+		\item L’installation de fonctionnalités sous Windows Server se fait par l’installation de rôles : dans le tableau de bord du gestionnaire de serveur Windows Server 2012, il faut cliquer sur \texttt{Gérer} puis \texttt{Ajoutez des rôles et fonctionnalités}. 
+		\item Ensuite, il faut cliquer sur \texttt{Suivant} puis sélectionner \texttt{Installation basée sur un rôle ou une fonctionnalité}, ensuite il faut sélectionner le \texttt{Pool de serveur} (nous sélectionnons notre serveur) puis cliquer sur \texttt{Suivant}. Il est alors possible de sélectionner les rôles à installer.
+	\end{enumerate}
+
+
 	\subsection{Serveurs groupe iSEC}	
 		\subsubsection{Serveur principal}
-		\subsubsection{Serveur réplica}
+			\paragraph{Installer le rôle AD DS}
+				Ce rôle permet d’installer l’Active Directory : Annuaire Microsoft permettant de regrouper toutes les informations du réseau. 
+				\begin{enumerate}
+					\item Dans la fenêtre de sélection des rôles, Sélectionner le rôle AD DS. Le fait de sélectionner ce rôle installe automatiquement le rôle DNS (indispensable pour le bon fonctionnement de l’Active Directory).
 
+					\item Ensuite, il faut valider jusqu’à l’installation et cliquer sur \texttt{Installer}. Il est recommandé d’attribuer une adresse IP fixe au serveur avant d’installer le rôle. De plus ceci sera utile par la suite pour configurer le DHCP.
+				\end{enumerate}
+
+ 			\paragraph{Configurer le rôle AD DS}
+				\begin{enumerate}
+					\item Une fois le rôle installé, dans le tableau de bord du gestionnaire de serveur, il faut cliquer sur \texttt{Promouvoir le serveur en tant que contrôleur de domaine}. Une fenêtre s’ouvre et demande les actions à effectuer. Il faut sélectionner \texttt{Ajouter une nouvelle forêt} et entre le nom de celle-ci : \texttt{isec-group.local} puis cliquer sur \texttt{Suivant}. 
+					\item Ensuite, il faut renseigner un mot de passe du mode de restauration des services d’annuaire et cliquer sur « Suivant » puis \texttt{Suivant} jusqu’à arriver à l’installation. Ensuite, cliquer sur \texttt{Installer}. Le serveur redémarrera automatiquement à la fin de cette opération. L’Active Directory est désormais fonctionnel.
+				\end{enumerate}
+
+			\paragraph{Installer le rôle DHCP}
+				\begin{enumerate}
+					\item Vous devez attribuer une adresse IP statique au serveur avant d’installer le DHCP.
+					\item Ensuite, il faut sélectionner \texttt{Serveur DHCP} dans le menu d’installation des rôles et fonctionnalités et cliquer sur \texttt{Suivant} jusqu’à arriver au menu d’installation où il faut cliquer sur \texttt{Installer}. Avant de cliquer sur \texttt{Fermer}, il faut cliquer sur \texttt{Terminer la configuration DHCP} et valider les deux étapes.
+				\end{enumerate}
+			\paragraph{Configurer le DHCP}
+				\begin{enumerate}
+					\item Une fois l’installation terminée, il faut ouvrir le gestionnaire DHCP qui se trouve dans l’onglet \texttt{Outils} du gestionnaire de serveur. Il faut faire un clic droit sur IPv4 et ouvrir \texttt{nouvelle étendue}. Un assistant de création de la nouvelle étendue s’affiche. Il demande de nommer l’étendue (vous pouvez mettre le nom de votre choix) et de mettre une description (facultative). 
+					\item Ensuite, il faut rentrer l’adresse IP de début et de fin de la plage d’adressage disponible pour les ordinateurs de l’AD. La section \texttt{Paramètres de configuration qui se propagent au client DHCP} se rempli automatiquement. Il est ensuite possible d’exclure une plage d’adresse IP si nécessaire. Ensuite, il faut définir la durée du bail des adresses. Ensuite, il est demandé d’indiquer la passerelle par défaut (routeur du réseau), puis le serveur DNS (les options sont automatiquement remplies car le DNS est sur le serveur en question). Il suffit ensuite de cliquer sur \texttt{Suivant} jusqu’à arriver à la fin de l’assistant. Le serveur DHCP est maintenant fonctionnel.
+				\end{enumerate}
+
+		\subsubsection{Serveur réplica}
+			\paragraph{}
+				L’installation du rôle s’effectue de la même manière que pour le serveur ISEC-GROUP-MASTER. Seule la configuration diffère : Lors de la promotion du serveur en tant que contrôleur de domaine, il faut sélectionner \texttt{Ajouter ce contrôleur de domaine à un domaine existant} et spécifier le domaine en question. Il faut ensuite entrer le mot de passe DSRM puis cliquer sur \texttt{Suivant}. Ensuite, il faut vérifier que le serveur ISEC-GROUP-MASTER soit sélectionné en tant que source de réplication puis cliquer sur \texttt{Suivant} jusqu’à arriver à l’installation. Une fois le redémarrage terminé, le réplica est fonctionnel et il est possible d’accéder aux informations de l’Active Directory.
 	\subsection{Serveurs groupe Telecom}
 		\subsubsection{Serveur Windows Server}
+			\paragraph{}
+				L’installation et la configuration de ce serveur est quasi identique à celle de ISEC-GROUP-MASTER à l’exception que le nom de domaine est différent. Il ne faut également pas installer de DHCP car ISEC-GROUP-MASTER dispose déjà d’un DHCP.
+
+	\subsection{Relation d'aprobation unidirectionnelle}
+		\paragraph{}
+		Dans un premier temps, il faut configurer la redirection DNS de chaque serveur pour que les deux domaines puissent se reconnaitre.
+		Dans le gestionnaire de serveur, il faut lancer le gestionnaire \texttt{Domaines et approbations Active Directory}, cliquer sur le domaine, sélectionner \texttt{Propriétés}. Dans l'onglet \texttt{Aprobations}, il faut sélectionner \texttt{Nouvelle aprobation} et renseigner le domaine isec-telecom.local et spécifier le sens de l'approbation: entrante pour le serveur isec-group.local et sortante pour le serveur isec-telecom.local. Ensuite, il suffit de cliquer sur \texttt{Suivant} jusqu'à arriver à la fin de l'assistant. Ensuite, il faut valider l'approbation sur les deux serveurs. Une fois ceci fait, l'approbation est fonctionnelle.
+
+	\subsection{Organisation de l'Active Directory}	
+		\paragraph{}
+			Nous avons remplis l'Active Directory selon les organigrammes fournis dans le sujet du projet. 
+
+		\begin{description}
+			\item Chaque groupe à son propre \textbf{domaine} à son nom
+			\item Chaque groupe (isec et télécom) à une \textbf{Unité d'Organisation} à son nom
+			\item Chaque service à une \textbf{Unité d'Organisation} à son nom
+			\item Chaque service à un \textbf{groupe de sécurité} à son nom 
+			\item Chaque poste de l'entreprise (ex : Secrétariat) à un \textbf{groupe de sécurité} à son nom
+			\item Enfin chaque \textbf{utilisateurs} est ajouté dans le \textbf{groupe} qui correspond à son poste. 
+		\end{description}
+
+		\paragraph{}
+			Ce choix d'arborescence a été fait pour faciliter le déploiement des GPOs qui sont différentes d'un service à l'autre et sont donc appliquées à l'UO qui correspond au service. Des groupes de sécurité ont été créé par service car ils sont nécessaires pour le partage de dossier. 
+
+		\paragraph{}
+			Toute l'arborescence de l'Active Directory est créée grâce à un \textbf{script powershell}, qui va lire des fichiers \texttt{.csv} dans lequel les différents services de l'entreprise ont été ajoutés ainsi que les utilisateurs et leur poste respectif. Ce script va s'occuper de créer les différentes Unités d'Organisation et leur hiérarchie entre elles. Il va créer les groupes pour les services et les postes dans les Unités d'Organisations correspondantes. Il va enfin créer les utilisateurs et les ajouter aux groupes correspondants à leur poste. Ce script va en plus créer les dossiers de partages par services nécessaires au partage. Ce script facilite grandement le déploiement dans l'Active Directory des utilisateurs ainsi que de nouveaux arrivants. Les différents scripts sont disponibles au lien suivant : \href{https://github.com/Exia-epickiwi/Projet-iSEC/tree/master/Scripts}{https://github.com/Exia-epickiwi/Projet-iSEC/tree/master/Scripts}.
