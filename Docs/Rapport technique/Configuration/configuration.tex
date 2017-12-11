@@ -43,6 +43,10 @@
 			\paragraph{}
 				L’installation et la configuration de ce serveur est quasi identique à celle de ISEC-GROUP-MASTER à l’exception que le nom de domaine est différent. Il ne faut également pas installer de DHCP car ISEC-GROUP-MASTER dispose déjà d’un DHCP.
 
+	\subsection{Relation d'aprobation unidirectionnelle}
+		\paragraph{}
+		Dans un premier temps, il faut configurer la redirection DNS de chaque serveur pour que les deux domaines puissent se reconnaitre.
+		Dans le gestionnaire de serveur, il faut lancer le gestionnaire \texttt{Domaines et approbations Active Directory}, cliquer sur le domaine, sélectionner \texttt{Propriétés}. Dans l'onglet \texttt{Aprobations}, il faut sélectionner \texttt{Nouvelle aprobation} et renseigner le domaine isec-telecom.local et spécifier le sens de l'approbation: entrante pour le serveur isec-group.local et sortante pour le serveur isec-telecom.local. Ensuite, il suffit de cliquer sur \texttt{Suivant} jusqu'à arriver à la fin de l'assistant. Ensuite, il faut valider l'approbation sur les deux serveurs. Une fois ceci fait, l'approbation est fonctionnelle.
 
 	\subsection{Organisation de l'Active Directory}	
 		\paragraph{}
