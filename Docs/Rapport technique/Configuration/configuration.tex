@@ -5,3 +5,23 @@
 
 	\subsection{Serveurs groupe Telecom}
 		\subsubsection{Serveur Windows Server}
+
+
+	\subsection{Organisation de l'Active Directory}	
+		\paragraph{}
+			Nous avons remplis l'Active Directory selon les organigrammes fournis dans le sujet du projet. 
+
+		\begin{description}
+			\item Chaque groupe à son propre \textbf{domaine} à son nom
+			\item Chaque groupe (isec et télécom) à une \textbf{Unité d'Organisation} à son nom
+			\item Chaque service à une \textbf{Unité d'Organisation} à son nom
+			\item Chaque service à un \textbf{groupe de sécurité} à son nom 
+			\item Chaque poste de l'entreprise (ex : Secrétariat) à un \textbf{groupe de sécurité} à son nom
+			\item Enfin chaque \textbf{utilisateurs} est ajouté dans le \textbf{groupe} qui correspond à son poste. 
+		\end{description}
+
+		\paragraph{}
+			Ce choix d'arborescence a été fait pour faciliter le déploiement des GPOs qui sont différentes d'un service à l'autre et sont donc appliquées à l'UO qui correspond au service. Des groupes de sécurité ont été créé par service car ils sont nécessaires pour le partage de dossier. 
+
+		\paragraph{}
+			Toute l'arborescence de l'Active Directory est créée grâce à un \textbf{script powershell}, qui va lire des fichiers \texttt{.csv} dans lequel les différents services de l'entreprise ont été ajoutés ainsi que les utilisateurs et leur poste respectif. Ce script va s'occuper de créer les différentes Unités d'Organisation et leur hiérarchie entre elles. Il va créer les groupes pour les services et les postes dans les Unités d'Organisations correspondantes. Il va enfin créer les utilisateurs et les ajouter aux groupes correspondants à leur poste. Ce script va en plus créer les dossiers de partages par services nécessaires au partage. Ce script facilite grandement le déploiement dans l'Active Directory des utilisateurs ainsi que de nouveaux arrivants. Les différents scripts sont disponibles au lien suivant : \href{https://github.com/Exia-epickiwi/Projet-iSEC/tree/master/Scripts}{https://github.com/Exia-epickiwi/Projet-iSEC/tree/master/Scripts}.
