@@ -15,11 +15,21 @@
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
 \usepackage{subfig}
 \usepackage{tabulary}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\color{darkgray},
+		numbers=left,
+		frame=single,
+		breaklines=true,
+		stringstyle=\color{PineGreen},
+		commentstyle=\color{Tan},
+		extendedchars=true,
+		keywordstyle=\bfseries\color{RedOrange}}
 
 % A rajouter si on veut ajouter les paragraphes et subparagraphes à la TOC
 %\setcounter{secnumdepth}{4}
 %\setcounter{tocdepth}{4}
-           
+
 
 \begin{document}
 
@@ -31,7 +41,7 @@
 
 % Partie pour les procédures d'installation des serveurs
 \input{Installation/installation.tex}
- 
+
 % Partie pour la configuration des serveurs
 \input{Configuration/configuration.tex}
 
@@ -49,4 +59,3 @@
 
 
 \end{document}
-              
