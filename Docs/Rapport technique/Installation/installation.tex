@@ -10,17 +10,17 @@
 	\subsection{Communication inter-VMs}
 		% Décrire notre architecture pour communiquer, commutateur, NAT, routeur...
 
-Pour la communication entre les VM, nous avons mis en place un réseau physique entre deux serveurs éxécutant l'hyperviseur de type 1.
+Pour la communication entre les VM, nous avons mis en place un réseau physique entre deux serveurs exécutant l'hyperviseur de type 1.
 
-Ce réseau est un réseau local standard composé de deux serveurs, un switch et des postes de chaque technicien d'infrastructure.
+Ce réseau est un réseau local standard composé de deux serveurs, un switch et les postes de chaque technicien d'infrastructure.
 ESXi dispose d'un système de switch virtuel permettant de former un pont entre les machines virtuelles et le réseau physique.
 Ainsi, chaque machine virtuelle est directement connectée au réseau.
 
-Pour le bon fonctionnement ce de réseau, un DHCP est installé sur le serveur de base du groupe distribuant les adresses IP et ayant enregistré les adresses statiques des serveurs.
+Pour le bon fonctionnement de ce réseau, un DHCP est installé sur le serveur de base du groupe distribuant les adresses IP et ayant enregistré les adresses statiques des serveurs.
 
-Pour disposer d'un acces à internet, nous avons mis en place un routeur NAT sur une machine Arch Linux a l'aide d'IP tables.
-Il suffit de configurer le système pour qu'il autorise le transfert de paquet puis configurer le par-feu interne du système en ajoutant les règles suivantes permettant de transmettres les packets.
-L'adresse de la machine NAT est alors donnée dans le DHCP pour que chaque machine aie acces au réseau externe.
+Pour disposer d'un accès à internet, nous avons mis en place un routeur NAT sur une machine Arch Linux à l'aide d'IP tables.
+Il suffit de configurer le système pour qu'il autorise le transfert de paquet puis configurer le pare-feu interne du système en ajoutant les règles suivantes permettant de transmettre les paquets.
+L'adresse de la machine NAT est alors donnée dans le DHCP pour que chaque machine ai accès au réseau externe.
 
 \begin{lstlisting}[caption=Commandes iptables permettant l'installation d'un NAT]
 iptables -t nat -A POSTROUTING -o interface-externe -j MASQUERADE
