@@ -3,8 +3,8 @@
 	\paragraph{}
 		Afin de configurer un domaine Active Directory au sein d’un réseau Windows sur un serveur Windows Server 2012 R2, il faut suivre les étapes suivantes :
 	\begin{enumerate}
-		\item L’installation de fonctionnalités sous Windows Server se fait par l’installation de rôles : dans le tableau de bord du gestionnaire de serveur Windows Server 2012, il faut cliquer sur « Gérer » puis « Ajoutez des rôles et fonctionnalités ». 
-		\item Ensuite, il faut cliquer sur « Suivant » puis sélectionner « Installation basée sur un rôle ou une fonctionnalité », ensuite il faut sélectionner le « Pool de serveur » (nous sélectionnons notre serveur) puis cliquer sur « Suivant ». Il est alors possible de sélectionner les rôles à installer.
+		\item L’installation de fonctionnalités sous Windows Server se fait par l’installation de rôles : dans le tableau de bord du gestionnaire de serveur Windows Server 2012, il faut cliquer sur \texttt{Gérer} puis \texttt{Ajoutez des rôles et fonctionnalités}. 
+		\item Ensuite, il faut cliquer sur \texttt{Suivant} puis sélectionner \texttt{Installation basée sur un rôle ou une fonctionnalité}, ensuite il faut sélectionner le \texttt{Pool de serveur} (nous sélectionnons notre serveur) puis cliquer sur \texttt{Suivant}. Il est alors possible de sélectionner les rôles à installer.
 	\end{enumerate}
 
 
@@ -15,29 +15,29 @@
 				\begin{enumerate}
 					\item Dans la fenêtre de sélection des rôles, Sélectionner le rôle AD DS. Le fait de sélectionner ce rôle installe automatiquement le rôle DNS (indispensable pour le bon fonctionnement de l’Active Directory).
 
-					\item Ensuite, il faut valider jusqu’à l’installation et cliquer sur « Installer ». Il est recommandé d’attribuer une adresse IP fixe au serveur avant d’installer le rôle. De plus ceci sera utile par la suite pour configurer le DHCP.
+					\item Ensuite, il faut valider jusqu’à l’installation et cliquer sur \texttt{Installer}. Il est recommandé d’attribuer une adresse IP fixe au serveur avant d’installer le rôle. De plus ceci sera utile par la suite pour configurer le DHCP.
 				\end{enumerate}
 
  			\paragraph{Configurer le rôle AD DS}
 				\begin{enumerate}
-					\item Une fois le rôle installé, dans le tableau de bord du gestionnaire de serveur, il faut cliquer sur « Promouvoir le serveur en tant que contrôleur de domaine ». Une fenêtre s’ouvre et demande les actions à effectuer. Il faut sélectionner « Ajouter une nouvelle forêt » et entre le nom de celle-ci : « isec-group.local » puis cliquer sur « Suivant ». 
-					\item Ensuite, il faut renseigner un mot de passe du mode de restauration des services d’annuaire et cliquer sur « Suivant » puis « Suivant » jusqu’à arriver à l’installation. Ensuite, cliquer sur « Installer ». Le serveur redémarrera automatiquement à la fin de cette opération. L’Active Directory est désormais fonctionnel.
+					\item Une fois le rôle installé, dans le tableau de bord du gestionnaire de serveur, il faut cliquer sur \texttt{Promouvoir le serveur en tant que contrôleur de domaine}. Une fenêtre s’ouvre et demande les actions à effectuer. Il faut sélectionner \texttt{Ajouter une nouvelle forêt} et entre le nom de celle-ci : \texttt{isec-group.local} puis cliquer sur \texttt{Suivant}. 
+					\item Ensuite, il faut renseigner un mot de passe du mode de restauration des services d’annuaire et cliquer sur « Suivant » puis \texttt{Suivant} jusqu’à arriver à l’installation. Ensuite, cliquer sur \texttt{Installer}. Le serveur redémarrera automatiquement à la fin de cette opération. L’Active Directory est désormais fonctionnel.
 				\end{enumerate}
 
 			\paragraph{Installer le rôle DHCP}
 				\begin{enumerate}
 					\item Vous devez attribuer une adresse IP statique au serveur avant d’installer le DHCP.
-					\item Ensuite, il faut sélectionner « Serveur DHCP » dans le menu d’installation des rôles et fonctionnalités et cliquer sur « Suivant » jusqu’à arriver au menu d’installation où il faut cliquer sur « Installer ». Avant de cliquer sur « Fermer », il faut cliquer sur « Terminer la configuration DHCP » et valider les deux étapes.
+					\item Ensuite, il faut sélectionner \texttt{Serveur DHCP} dans le menu d’installation des rôles et fonctionnalités et cliquer sur \texttt{Suivant} jusqu’à arriver au menu d’installation où il faut cliquer sur \texttt{Installer}. Avant de cliquer sur \texttt{Fermer}, il faut cliquer sur \texttt{Terminer la configuration DHCP} et valider les deux étapes.
 				\end{enumerate}
 			\paragraph{Configurer le DHCP}
 				\begin{enumerate}
-					\item Une fois l’installation terminée, il faut ouvrir le gestionnaire DHCP qui se trouve dans l’onglet « Outils » du gestionnaire de serveur. Il faut faire un clic droit sur IPv4 et ouvrir « nouvelle étendue ». Un assistant de création de la nouvelle étendue s’affiche. Il demande de nommer l’étendue (vous pouvez mettre le nom de votre choix) et de mettre une description (facultative). 
-					\item Ensuite, il faut rentrer l’adresse IP de début et de fin de la plage d’adressage disponible pour les ordinateurs de l’AD. La section « Paramètres de configuration qui se propagent au client DHCP » se rempli automatiquement. Il est ensuite possible d’exclure une plage d’adresse IP si nécessaire. Ensuite, il faut définir la durée du bail des adresses. Ensuite, il est demandé d’indiquer la passerelle par défaut (routeur du réseau), puis le serveur DNS (les options sont automatiquement remplies car le DNS est sur le serveur en question). Il suffit ensuite de cliquer sur « Suivant » jusqu’à arriver à la fin de l’assistant. Le serveur DHCP est maintenant fonctionnel.
+					\item Une fois l’installation terminée, il faut ouvrir le gestionnaire DHCP qui se trouve dans l’onglet \texttt{Outils} du gestionnaire de serveur. Il faut faire un clic droit sur IPv4 et ouvrir \texttt{nouvelle étendue}. Un assistant de création de la nouvelle étendue s’affiche. Il demande de nommer l’étendue (vous pouvez mettre le nom de votre choix) et de mettre une description (facultative). 
+					\item Ensuite, il faut rentrer l’adresse IP de début et de fin de la plage d’adressage disponible pour les ordinateurs de l’AD. La section \texttt{Paramètres de configuration qui se propagent au client DHCP} se rempli automatiquement. Il est ensuite possible d’exclure une plage d’adresse IP si nécessaire. Ensuite, il faut définir la durée du bail des adresses. Ensuite, il est demandé d’indiquer la passerelle par défaut (routeur du réseau), puis le serveur DNS (les options sont automatiquement remplies car le DNS est sur le serveur en question). Il suffit ensuite de cliquer sur \texttt{Suivant} jusqu’à arriver à la fin de l’assistant. Le serveur DHCP est maintenant fonctionnel.
 				\end{enumerate}
 
 		\subsubsection{Serveur réplica}
 			\paragraph{}
-				L’installation du rôle s’effectue de la même manière que pour le serveur ISEC-GROUP-MASTER. Seule la configuration diffère : Lors de la promotion du serveur en tant que contrôleur de domaine, il faut sélectionner « Ajouter ce contrôleur de domaine à un domaine existant » et spécifier le domaine en question. Il faut ensuite entrer le mot de passe DSRM puis cliquer sur « Suivant ». Ensuite, il faut vérifier que le serveur ISEC-GROUP-MASTER soit sélectionné en tant que source de réplication puis cliquer sur « Suivant » jusqu’à arriver à l’installation. Une fois le redémarrage terminé, le réplica est fonctionnel et il est possible d’accéder aux informations de l’Active Directory.
+				L’installation du rôle s’effectue de la même manière que pour le serveur ISEC-GROUP-MASTER. Seule la configuration diffère : Lors de la promotion du serveur en tant que contrôleur de domaine, il faut sélectionner \texttt{Ajouter ce contrôleur de domaine à un domaine existant} et spécifier le domaine en question. Il faut ensuite entrer le mot de passe DSRM puis cliquer sur \texttt{Suivant}. Ensuite, il faut vérifier que le serveur ISEC-GROUP-MASTER soit sélectionné en tant que source de réplication puis cliquer sur \texttt{Suivant} jusqu’à arriver à l’installation. Une fois le redémarrage terminé, le réplica est fonctionnel et il est possible d’accéder aux informations de l’Active Directory.
 	\subsection{Serveurs groupe Telecom}
 		\subsubsection{Serveur Windows Server}
 			\paragraph{}

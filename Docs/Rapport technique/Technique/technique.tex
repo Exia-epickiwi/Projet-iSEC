@@ -1,10 +1,9 @@
-% Pas trop d'idée pour ce nom de section à revoir...
 \section{Réponse au besoin}
 	\subsection{GPO}
 		\subsubsection{Partage Groupe}
 			\paragraph{}
 			\label{partage_group}
-				Ce partage est disponible pour tous les services du groupe iSEC et se trouve sur le contrôleur de domaine principal. Il est ajouté comme lecteur réseau sur le poste de travail avec la lettre \texttt{G:} comme \textit{Groupe}. Pour créer ce partage sur le contrôleur de domaine maitre, il faut suivre la procédure suivante :
+				Ce partage est disponible pour tous les services du groupe iSEC et se trouve sur le contrôleur de domaine principal. Il est ajouté comme lecteur réseau sur le poste de travail avec la lettre \texttt{G:} comme \textit{Groupe}. Pour créer ce partage sur le contrôleur de domaine maitre, il faut suivre les procédures suivante :
 
 				\begin{enumerate}
 					\item Créer le dossier qui sera partagé : sur le contrôleur de domaine ce dossier se trouve dans \texttt{C:\textbackslash{}Shares\textbackslash}  sous le nom de \texttt{Groupe}, comme tous les dossiers partagés.
@@ -12,7 +11,7 @@
 						\begin{enumerate}
 							\item Cliquer droit sur le dossier partagé
 							\item Cliquer sur propriétés
-							\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...}
+							\item Dans l'onglet \texttt{Partage}, cliquer sur le bouton \texttt{Partager...}
 							\item Dans la glissière, sélectionner \texttt{Rechercher des personnes...}
 							\item Ajouter le nom du groupe dans le champ de texte, pour ajouter les utilisateurs du domaine, taper \texttt{Utilisateurs du domaine} et cliquer sur le bouton \texttt{OK}.
 							\item Sélectionner le \texttt{Niveau d'autorisation}, sur \texttt{Lecture/écriture} pour les \texttt{Utilisateurs du domaine} et cliquer sur \texttt{Partager}.
@@ -32,7 +31,7 @@
 				Le partage Telecom se fait de la même façon que dans le paragraphe \ref{partage_group}, Partage Groupe. La configuration se fait sur le serveur de la filiale Télécom. Il suffit d'ajuster les noms pour qu'ils correspondent au partage Télécom. 
 		\subsubsection{Partage par service}
 			\paragraph{}
-				Le partage par service met à disposition un répertoire partagé sous forme de lecteur mappé avec la lettre \texttt{S:} comme Share. Chaque répertoire n'est visible que par le service qui lui est propre, sauf le service direction qui voit tous les dossiers de services partagés. Répétez les procédures suivantes pour chaque dossiers partagés à mettre en place :
+				Le partage par service met à disposition un répertoire partagé sous forme de lecteur mappé avec la lettre \texttt{S:} comme Share. Chaque répertoire n'est visible que par le service qui lui est propre, sauf le service direction qui voit tous les dossiers de services partagés. Répétez les procédures suivantes pour chaque dossier partagé à mettre en place :
 				\begin{enumerate}
 					\item Créer le dossier qui sera partagé : sur le contrôleur de domaine ce dossier se trouve dans \texttt{C:\textbackslash{}Shares\textbackslash{}Services\textbackslash} sous le nom correspondant au service du dossier partagé.
 					\item Il faut ensuite partager le dossier : 
@@ -72,10 +71,9 @@
 					\item N'oublier pas d'activer la GPO en cliquant droit dessus et cliquer sur \texttt{Appliqué}.
 				\end{enumerate}
 
-
 		\subsubsection{Répertoire personnel distant}
 			\paragraph{}
-				Chaque utilisateur du domaine a son répertoire personnel \texttt{Mes documents} déplacé sur le contrôleur de domaine principal. Dans un dossier \texttt{Home}, les différents utilisateurs ont un dossier à leur nom qui contient leurs documents. Pour reproduire cette configuration, suivez les procédures suivantes :
+				Chaque utilisateur du domaine à son répertoire personnel \texttt{Mes documents} déplacé sur le contrôleur de domaine principal. Dans un dossier \texttt{Home}, les différents utilisateurs ont un dossier à leur nom qui contient leurs documents. Pour reproduire cette configuration, suivez les procédures suivantes :
 				\begin{enumerate}
 					\item Il faut configurer le partage sur le dossier contenant dossiers document des utilisateurs. Créer le dossier et cliquer droit dessus et cliquer sur \texttt{Propriétés}.
 					\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...} et partager le pour tout le monde en lecture et écriture.
