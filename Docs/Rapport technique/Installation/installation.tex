@@ -1,9 +1,11 @@
 \section{Installation des serveurs}
 	\subsection{Hyperviseur}
 		% Décrire le choix d'hyperviseur et sa configuration si besoin
+Etant donné la configuration matérielle disponible, nous avons décidé d’installer un hyperviseur de type 1 sur nos serveurs physiques. Cette solution est la plus performante pour notre environnement car l’hyperviseur est directement au niveau de la couche matériel. Nous avons choisi d’utiliser VMware ESXi car c’est un hyperviseur de type 1 rapide, fiable et performant. Il dispose également d’un logiciel de gestion vSphere pour utiliser l’hyperviseur avec une interface graphique. De plus, par défaut, VMware permet d’utiliser les VM en mode pont avec un switch virtuel pour être relié directement au réseau local.
 
 	\subsection{Machines virtuelles}
 		% Décrire installation des machines virtuelles
+Il faut créer une machine virtuelle en spécifiant les options voulues comme le disque dur, la mémoire vive, les processeurs, la carte réseau. Ensuite, il faut télécharger l’ISO d’installation sur le serveur pour que celle-ci soit utilisable par la VM. Puis, il faut insérer l’ISO dans la VM et lancer la VM, l’installation du système d’exploitation se fait de la même façon qu’avec un PC. 
 
 	\subsection{Communication inter-VMs}
 		% Décrire notre architecture pour communiquer, commutateur, NAT, routeur...

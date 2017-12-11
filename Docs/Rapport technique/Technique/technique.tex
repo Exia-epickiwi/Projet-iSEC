@@ -1,27 +1,149 @@
-% Pas trop d'idée pour ce nom de section à revoir...
 \section{Réponse au besoin}
-	\subsection{Scripts}
 	\subsection{GPO}
 		\subsubsection{Partage Groupe}
 			\paragraph{}
-				Ce partage est disponible pour tous les services du groupe iSEC et se trouve sur le contrôleur de domaine principal. Il est ajouté comme lecteur réseau sur le poste de travail avec la lettre \texttt{G:} comme \textit{Groupe}. Pour créer ce partage sur le contrôleur de domaine maitre, il faut suivre la procédure suivante :
+			\label{partage_group}
+				Ce partage est disponible pour tous les services du groupe iSEC et se trouve sur le contrôleur de domaine principal. Il est ajouté comme lecteur réseau sur le poste de travail avec la lettre \texttt{G:} comme \textit{Groupe}. Pour créer ce partage sur le contrôleur de domaine maitre, il faut suivre les procédures suivante :
 
 				\begin{enumerate}
-					\item Créer le dossier qui sera partagé : sur le contrôleur de domaine ce dossier se trouve dans \texttt{C:\\Share\\} sous le nom de \texttt{Groupe}, comme tous les dossiers partagés.
+					\item Créer le dossier qui sera partagé : sur le contrôleur de domaine ce dossier se trouve dans \texttt{C:\textbackslash{}Shares\textbackslash}  sous le nom de \texttt{Groupe}, comme tous les dossiers partagés.
 					\item Il faut ensuite partager le dossier : 
 						\begin{enumerate}
 							\item Cliquer droit sur le dossier partagé
 							\item Cliquer sur propriétés
-							\item Dans l'onglet
+							\item Dans l'onglet \texttt{Partage}, cliquer sur le bouton \texttt{Partager...}
+							\item Dans la glissière, sélectionner \texttt{Rechercher des personnes...}
+							\item Ajouter le nom du groupe dans le champ de texte, pour ajouter les utilisateurs du domaine, taper \texttt{Utilisateurs du domaine} et cliquer sur le bouton \texttt{OK}.
+							\item Sélectionner le \texttt{Niveau d'autorisation}, sur \texttt{Lecture/écriture} pour les \texttt{Utilisateurs du domaine} et cliquer sur \texttt{Partager}.
+							\item (Facultatif) Toujours dans l'onglet \texttt{Partage} cliquer sur \texttt{Partage avancé...}.
+							\item Cocher la case \texttt{Partager ce dossier} et cliquer sur \texttt{OK}.
 						\end{enumerate}  
+						\item Dans le \texttt{Gestionnaire de serveur}, ouvrer le \texttt{Gestionnaire de stratégie de groupe}
+						\item Dans l'UO créée précédement \texttt{isec-group}, cliquer droit et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la. 
+						\item Cliquer droit sur la GPO créée et cliquer sur \texttt{Modifier}.
+						\item Dans \texttt{Configuration utilisateur},\texttt{Préférences},\texttt{Paramètres Windows} cliquer droit sur \texttt{Mappages de lecteurs} et cliquer sur \texttt{Nouveau} et \texttt{Lecteur mappé}.
+						\item Dans l'onglet \texttt{Général} ajouter l'emplacement \texttt{\textbackslash{}\textbackslash{}GROUP-WSERVER-M\textbackslash{}Groupe}, cocher la case \texttt{Reconnecter}, libeller le en tant que \texttt{Groupe}, et utiliser la lettre \texttt{G:} dans \texttt{Lettre de lecteur}. Dans \texttt{Masquer/Afficher ce lecteur} cocher la case \texttt{Afficher ce lecteur} et cocher la case \texttt{Afficher tous les lecteurs} dans \texttt{Masquer/Afficher tous les lecteurs}.
+						\item Dans l'onglet \texttt{Commun}, cocher \texttt{Arrêter le traitement des éléments de cette extension si une erreur survient}, \texttt{Exécuter dans le contexte de sécurité de l'utilisateur connecté} et \texttt{Supprimer l'élément lorsqu'il n'est plus appliqué}.
+						\item Cliquer enfin sur \texttt{OK} et cliquer droit sur la GPO et cliquer sur \texttt{Appliqué}.
 				\end{enumerate}
 		\subsubsection{Partage Telecom}
 			\paragraph{}
-				Le partage Telecom se fait de la même façon
+				Le partage Telecom se fait de la même façon que dans le paragraphe \ref{partage_group}, Partage Groupe. La configuration se fait sur le serveur de la filiale Télécom. Il suffit d'ajuster les noms pour qu'ils correspondent au partage Télécom. 
 		\subsubsection{Partage par service}
+			\paragraph{}
+				Le partage par service met à disposition un répertoire partagé sous forme de lecteur mappé avec la lettre \texttt{S:} comme Share. Chaque répertoire n'est visible que par le service qui lui est propre, sauf le service direction qui voit tous les dossiers de services partagés. Répétez les procédures suivantes pour chaque dossier partagé à mettre en place :
+				\begin{enumerate}
+					\item Créer le dossier qui sera partagé : sur le contrôleur de domaine ce dossier se trouve dans \texttt{C:\textbackslash{}Shares\textbackslash{}Services\textbackslash} sous le nom correspondant au service du dossier partagé.
+					\item Il faut ensuite partager le dossier : 
+						\begin{enumerate}
+							\item Cliquer droit sur le dossier partagé
+							\item Cliquer sur propriétés
+							\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...}
+							\item Dans la glissière, sélectionner \texttt{Rechercher des personnes...}
+							\item Ajouter le nom du groupe dans le champ de texte, taper le nom de l'UO correspondant au service (ex:service-rh pour le service Ressource humaines) et cliquer sur le bouton \texttt{OK}.
+							\item Sélectionner le \texttt{Niveau d'autorisation}, sur \texttt{Lecture/écriture} pour le groupe ajouté précédement et cliquer sur \texttt{Partager}.
+							\item Faites de même pour l'UO correspondant au service direction pour qu'il ai accès à tous les dossiers partagés.
+							\item (Facultatif) Toujours dans l'onglet \texttt{Partage} cliquer sur \texttt{Partage avancé...}.
+							\item Cocher la case \texttt{Partager ce dossier} et cliquer sur \texttt{OK}.
+							\item Récupérer le nom du partage dans l'onglet \texttt{Partage} en dessous de chemin réseau, il sera utile pour la suite.
+						\end{enumerate}  
+						\item Dans le \texttt{Gestionnaire de serveur}, ouvrer le \texttt{Gestionnaire de stratégie de groupe}
+						\item Dans l'UO du service, cliquer droit et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la. 
+						\item Cliquer droit sur la GPO créée et cliquer sur \texttt{Modifier}.
+						\item Dans \texttt{Configuration utilisateur}, \texttt{Préférences}, \texttt{Paramètres Windows} cliquer droit sur \texttt{Mappages de lecteurs} et cliquer sur \texttt{Nouveau} et \texttt{Lecteur mappé}.
+						\item Dans l'onglet \texttt{Général} ajouter l'emplacement avec le nom du partage récupéré précédement, \texttt{\textbackslash{}\textbackslash{}GROUP-WSERVER-M\textbackslash{}Nom\_de\_votre\_partage}, cocher la case \texttt{Reconnecter}, libeller le en tant que \texttt{Groupe}, et utiliser la lettre \texttt{G:} dans \texttt{Lettre de lecteur}. Dans \texttt{Masquer/Afficher ce lecteur} cocher la case \texttt{Afficher ce lecteur} et cocher la case \texttt{Afficher tous les lecteurs} dans \texttt{Masquer/Afficher tous les lecteurs}.
+						\item Dans l'onglet \texttt{Commun}, cocher \texttt{Arrêter le traitement des éléments de cette extension si une erreur survient},\texttt{Exécuter dans le contexte de sécurité de l'utilisateur connecté} et \texttt{Supprimer l'élément lorsqu'il n'est plus appliqué}.
+						\item Cliquer enfin sur \texttt{OK} et cliquer droit sur la GPO et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
 		\subsubsection{Imprimantes}
+			\paragraph{}
+				PDFCreator a été installé sur le serveur principal et va simuler une imprimante distante pour tous les utilisateurs. Pour ce faire suivez les procédures suivantes : 
+				\begin{enumerate}
+					\item Installation de PDFCreator sur le serveur, une fois installé, modifier les propriétés de sauvegarde pour enregistrer les PDF dans le dossier souhaité et sous le nom souhaité.
+					\item Ouvrer le gestionnaire de périphériques et imprimantes, cliquer sur l'imprimante \texttt{PDFCreator} et cocher la case \texttt{Partagé cette imprimante} dans l'onglet \texttt{Partage}.
+					\item Dans l'onglet \texttt{Partage}, récupéré le chemin de partage qui sera utile plus tard.
+					\item Dans le \texttt{Gestionnaire de serveur}, ouvrer le \texttt{Gestionnaire de stratégie de groupe}
+					\item Dans l'UO du groupe, cliquer droit et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la. 
+					\item Cliquer droit sur la GPO créée et cliquer sur \texttt{Modifier}.
+					\item Dans \texttt{Configuration utilisateur}, \texttt{Préférences}, \texttt{Paramètres du Panneau de configuration} et cliquer droit sur \texttt{Imprimantes} et cliquer sur \texttt{Imprimante} et \texttt{Imprimante partagée}.
+					\item Ajouter le chemin de partage récupéré précédement dans \texttt{Chemin de partage}, et cocher la case \texttt{Définir en tant qu'imprimante par défaut}.
+					\item Dans l'onglet \texttt{Commun}, cocher les 3 premières cases.
+					\item N'oublier pas d'activer la GPO en cliquant droit dessus et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
+
+		\subsubsection{Répertoire personnel distant}
+			\paragraph{}
+				Chaque utilisateur du domaine à son répertoire personnel \texttt{Mes documents} déplacé sur le contrôleur de domaine principal. Dans un dossier \texttt{Home}, les différents utilisateurs ont un dossier à leur nom qui contient leurs documents. Pour reproduire cette configuration, suivez les procédures suivantes :
+				\begin{enumerate}
+					\item Il faut configurer le partage sur le dossier contenant dossiers document des utilisateurs. Créer le dossier et cliquer droit dessus et cliquer sur \texttt{Propriétés}.
+					\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...} et partager le pour tout le monde en lecture et écriture.
+					\item Toujours dans l'onglet \texttt{Partage} cliquer sur \texttt{Partage avancé...}.
+					\item Cocher la case \texttt{Partager ce dossier} et cliquer sur \texttt{OK}.
+					\item Dans le \texttt{Gestionnaire de serveur}, ouvrer le \texttt{Gestionnaire de stratégie de groupe}
+					\item Dans l'UO du groupe, cliquer droit et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la. 
+					\item Cliquer droit sur la GPO créée et cliquer sur \texttt{Modifier}.
+					\item Dans \texttt{Configuration utilisateur}, \texttt{Paramètres Windows}, \texttt{Redirection de dossiers}, cliquer droit ensuite sur \texttt{Documents} dans la liste de droite et cliquer sur \texttt{Propriétés}. 
+					\item Dans \texttt{Emplacement du dossier cible}, selectionner \texttt{Créer un dossier pour chaque utilisateur sous le chemin d'accès racine}. Ajouter le chemin d'accès \texttt{\textbackslash{}\textbackslash{}GROUP-WSERVER-M\textbackslash{}Home}
+					\item Dans l'onglet \texttt{Paramètres}, cocher la case \texttt{Accorder à l'utilisateur des droits exclusifs sur Documents} et \texttt{Déplacer le contenu de Documents vers le nouvel emplacement} ainsi que \texttt{Conserver le dossier dans le nouvel emplacement}.
+					\item N'oublier pas d'activer la GPO en cliquant droit dessus et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
+
 		\subsubsection{Sécurité mot de passe}
+			\paragraph{}
+				Les mots de passe sont renouvelés tous les 90 jours et font 8 caractères minimum. Il n'y a pas de complexité forte définie, mais un mauvais mot de passe entré 3 fois de suite verrouille le compte utilisateur. Pour mettre en place cette sécurité de groupe, suivez les procédures suivantes :
+				\begin{enumerate}
+					\item Déplacer la GPO \texttt{Default Domain Policy} (elle se trouve dans \texttt{Objets de stratégie de groupe} dans la forêt \texttt{isec-group.local} pour le groupe iSEC ou \texttt{isec-telecom.local}. Cliquer droit dessus et \texttt{Modifier}
+					\item Dans l'arborescence cliquez sur \texttt{Configuration ordinateur}, \texttt{Stratégies}, \texttt{Paramètres Windows}, \texttt{Paramètres de sécurité} et \texttt{Stratégie de mot de passe}. 
+					\item Cliquer droit sur \texttt{Durée de vie maximale du mot de passe} et cliquer sur \texttt{Propriétés}. Cocher la case \texttt{Définir ce paramètre de stratégie} et définir l'expiration sur 90 jours.
+					\item Cliquer droit sur \texttt{Le mot de passe doit respecter des exigences de complexité} et cliquer sur \texttt{Propriétés}. Cocher la case \texttt{Définir ce paramètre de stratégie} et cocher la case \texttt{Désactivé}.
+					\item Cliquer droit sur \texttt{Longueur minimale du mot de passe} et cliquer sur \texttt{Propriétés}. Cocher la case \texttt{Définir ce paramètre de stratégie} et définir le minimum sur 8 caractères.
+					\item Dans l'arborescence cliquer sur \texttt{Stratégie de verrouillage du compte}
+					\item Cliquer droit sur \texttt{Seuil de verrouillage du compte} et cliquer sur \texttt{Propriétés}. Cocher la case \texttt{Définir ce paramètre de stratégie} et définir le nombre de tentative sur 3.
+					\item N'oublier pas d'activer la GPO en cliquant droit dessus et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
 		\subsubsection{Exécution automatique}
+			\paragraph{}
+				Pour des raisons de sécurité l'exécution automatique (AutoRun) sur les périphériques amovibles est désactivé. Suivez les procédures suivantes pour l'appliquer :
+				\begin{enumerate}
+					\item Comme pour les mots de passe il va falloir modifier la GPO \texttt{Default Domain Policy}, cliquer droit dessus et cliquer sur \texttt{Modifier}. 
+					\item Dans \texttt{Configuration ordinateur}, \texttt{Stratégies}, \texttt{Modéles d'administration}, \texttt{Composants Windows} et cliquer sur \texttt{Stratégies d'exécution automatique}.
+					\item Cliquer droit sur \texttt{Désactiver l'exécution automatique} et cliquer sur \texttt{Modifier}.
+					\item Cocher la case \texttt{Activé}, et dans \texttt{Options} dans la liste déroulante sélectionner \texttt{Lecteurs de CD-ROM et supports amovibles}. Cliquer sur \texttt{OK}.
+					\item Ne pas oublier d'activer la GPO en cliquant droit dessus et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
 		\subsubsection{Fond d'écran}
+			\paragraph{}
+				Chaque groupe à un fond d'écran qui lui est propre, mais aussi chaque service. Un fond d'écran par service et par groupe a été créé et appliqué sur les UO de chaque service. Pour ce faire, répetez les procédures suivantes pour chaque UO de chaque service et sur les deux groupes :
+
+				\begin{enumerate}
+					\item Il faut configurer le partage sur le dossier contenant les papiers peints. Créer le dossier et cliquer droit dessus et cliquer sur \texttt{Propriétés}.
+					\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...}
+					\item Dans la glissière, sélectionner \texttt{Rechercher des personnes...}
+					\item Ajouter le nom du groupe dans le champ de texte et cliquer sur le bouton \texttt{OK}.
+					\item Sélectionner le \texttt{Niveau d'autorisation}, sur \texttt{Lecture/écriture} pour le groupe précédement créé et cliquer sur \texttt{Partager}.
+					\item (Facultatif) Toujours dans l'onglet \texttt{Partage} cliquer sur \texttt{Partage avancé...}.
+					\item Cocher la case \texttt{Partager ce dossier} et cliquer sur \texttt{OK}.
+					\item Cliquer droit sur l'UO et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la.
+					\item Cliquer droit sur la GPO précédement créée et cliquer sur \texttt{Modifier}.
+					\item Dans \texttt{Configuration utilisateur}, \texttt{Stratégies}, \texttt{Modèles d'administration}, \texttt{Bureau}, et cliquer sur \texttt{Bureau}. Cliquer droit sur \texttt{Papier peint du Bureau} et cliquer sur \texttt{Modifier}.
+					\item Cocher la case \texttt{Activé}
+					\item Dans \texttt{Nom du papier peint}, ajouter le nom du partage, suivi du nom du fichier JPG (ex : \texttt{\textbackslash{}\textbackslash{}GROUP-WSERVER-M\textbackslash{}Wallpappers\textbackslash{}Servicerh.jpg}). Dans le \texttt{style du papier peint}, sélectionner \texttt{Ajuster}.
+					\item Ne pas oublier d'activer la GPO en cliquant droit sur la GPO créée et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
 		\subsubsection{Logiciel 7Zip}
-		\subsubsection{...}
+			\paragraph{}
+				Tous les postes ont le logiciel de compression/décompression 7Zip installé sur leur poste. Pour reproduire cette configuration suivez les procédures suivantes : 
+				\begin{enumerate}
+					\item Il faut configurer le partage sur le dossier contenant les fichiers d'installation. Créer le dossier et cliquer droit dessus et cliquer sur \texttt{Propriétés}.
+					\item Dans l'onglet \texttt{Partage}, cliquez sur le bouton \texttt{Partager...}
+					\item Ajouter le nom du groupe dans le champ de texte, taper \texttt{Utilisateurs du domaine} et cliquer sur le bouton \texttt{OK}.
+					\item Sélectionner le \texttt{Niveau d'autorisation}, sur \texttt{Lecture/écriture} pour le groupe ajouté précédement et cliquer sur \texttt{Partager}.
+					\item (Facultatif) Toujours dans l'onglet \texttt{Partage} cliquer sur \texttt{Partage avancé...}.
+					\item Cocher la case \texttt{Partager ce dossier} et cliquer sur \texttt{OK}.
+					\item Dans le \texttt{Gestionnaire de serveur}, ouvrer le \texttt{Gestionnaire de stratégie de groupe}
+					\item Dans la forêt, cliquer droit et cliquer sur \texttt{Créer un objet GPO dans ce domaine, et le lier ici...}. Nommer la. 
+					\item Cliquer droit sur la GPO créée et cliquer sur \texttt{Modifier}.
+					\item Dans \texttt{Configuration ordinateur}, \texttt{Stratégie}, \texttt{Paramètres du logiciel}cliquer droit sur \texttt{Installation de logiciel}et cliquer sur \texttt{Nouveau}  et \texttt{Package}.
+					\item Sélectionner le fichier \texttt{.msi} installateur de 7Zip et cocher la case \texttt{Attribué} pour le type de déploiement.
+					\item Ne pas oublier d'activer la GPO en cliquant droit sur la GPO et cliquer sur \texttt{Appliqué}.
+				\end{enumerate}
